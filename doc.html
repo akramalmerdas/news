@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أخبار أفريقيا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1a5fb4;
+            --primary-dark: #0d4a8f;
+            --secondary: #e95420;
+            --light: #f8f9fa;
+            --dark: #333;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --border: #dee2e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --image-overlay: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--dark);
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -30px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            position: relative;
+            height: 250px;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .news-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--image-overlay);
+            padding: 1rem;
+            color: white;
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .card-header h2 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .card-content p {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .card-footer {
+            padding: 1rem 1.5rem;
+            background: var(--light-gray);
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .source {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .source i {
+            color: var(--primary);
+        }
+        
+        .tag {
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .news-card:nth-child(1) .card-header {
+            background: linear-gradient(to right, #1a5fb4, #2d79db);
+            color: white;
+        }
+        
+        .news-card:nth-child(1) .card-header h2 {
+            color: white;
+        }
+        
+        .news-card:nth-child(2) .card-header {
+            background: linear-gradient(to right, #e95420, #ff6b35);
+            color: white;
+        }
+        
+        .news-card:nth-child(2) .card-header h2 {
+            color: white;
+        }
+        
+        .news-card:nth-child(3) .card-header {
+            background: linear-gradient(to right, #26a269, #2ec27e);
+            color: white;
+        }
+        
+        .news-card:nth-child(3) .card-header h2 {
+            color: white;
+        }
+        
+        .news-card:nth-child(4) .card-header {
+            background: linear-gradient(to right, #a51d2d, #c01c28);
+            color: white;
+        }
+        
+        .news-card:nth-child(4) .card-header h2 {
+            color: white;
+        }
+        
+        .news-card:nth-child(5) .card-header {
+            background: linear-gradient(to right, #613583, #7c3aed);
+            color: white;
+        }
+        
+        .news-card:nth-child(5) .card-header h2 {
+            color: white;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-image {
+                height: 180px;
+            }
+        }
+
+        @media (min-width: 1024px) { /* Adjust this breakpoint as needed for "large screens" */
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>أخبار أفريقيا</h1>
+        <p>أحدث التقارير والأحداث من مختلف أنحاء القارة بقلم أكرم المرداس </p>
+    </div>
+    
+    <div class="container">
+        <div class="news-grid">
+            <!-- Article 1: Libya Oil -->
+            <div class="news-card">
+                <div class="card-image">
+                    <img src="BP.avif" alt="منشآت نفطية في ليبيا">
+                    <div class="image-overlay">
+                        <h3>اتفاقيات نفطية تاريخية</h3>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <h2>شركتا "BP" و"شل" تتوصلان إلى اتفاق مع المؤسسة الوطنية للنفط في ليبيا لدراسة إمكانات استكشاف وتطوير حقول نفطية</h2>
+                </div>
+                <div class="card-content">
+                    <p>أعلنت المؤسسة الوطنية للنفط الليبية، الاثنين، عن توقيع اتفاقيات مع شركتي الطاقة العالميتين "BP" و"شل" لإجراء دراسات تهدف إلى استكشاف وتطوير الإمكانات الهيدروكربونية في ثلاثة حقول نفطية ليبية، من ضمنها حقلا مسلة وسرير، بالإضافة إلى بعض مناطق الاستكشاف المحيطة.</p>
+                    <p>تأتي هذه الخطوة ضمن عودة تدريجية لشركات النفط الأجنبية للاستثمار في ليبيا، ثاني أكبر منتج للنفط في إفريقيا، والتي عانت من اضطرابات أثرت على أنشطتها النفطية. ومن المقرر أن تعيد "BP" فتح مكتبها في العاصمة طرابلس خلال الربع الأخير من عام 2025.</p>
+                    <p>من جانب آخر، قالت المؤسسة الوطنية للنفط إنها اتفقت مع "شل" على تقييم الإمكانات الهيدروكربونية، وإجراء دراسة شاملة للجدوى الفنية والاقتصادية لتطوير حقل عطشان النفطي وغيرها من الحقول المملوكة بالكامل للمؤسسة.</p>
+                </div>
+                <div class="card-footer">
+                    <div class="source">
+                        <i class="fas fa-newspaper"></i>
+                              <a href="https://www.reuters.com/business/energy/bp-shell-study-hydrocarbon-potential-three-libyan-oilfields-2025-07-07/" target="_blank"><span>المصدر: رويترز</span></a>
+                        
+                    </div>
+                    <div class="tag">طاقة</div>
+                </div>
+            </div>
+            
+            <!-- Article 2: Kenya Protests -->
+            <div class="news-card">
+                <div class="card-image">
+                    <img src="kenya.webp" alt="احتجاجات في كينيا">
+                    <div class="image-overlay">
+                        <h3>احتجاجات كينيا 2025</h3>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <h2> مقتل 10 محتجين في كينيا خلال احتجاجات "سبعة–سبعة"</h2>
+                </div>
+                <div class="card-content">
+                    <p>أسفرت مواجهات عنيفة بين الشرطة والمحتجين، اليوم الاثنين، عن مقتل عشرة أشخاص وفقًا للجنة حقوق الإنسان الممولة حكوميًا.</p>
+                    <p>كما قامت الشرطة الكينية بإغلاق عدة طرق في محاولة لاحتواء المظاهرات التي انتشرت في 17 مدينة، واعتقلت أكثر من 500 شخص، حسبما أفاد الناطق الرسمي باسم الشرطة.</p>
+                    <p>قال المتحدث الرسمي ميتشيل موشيري إن بعض الأفراد كانوا مصرين على الانخراط في أعمال تخريبية خلال المظاهرات، مثل السرقة ومهاجمة أفراد الشرطة.</p>
+                    <p>تأتي المظاهرات المطالبة بتحسين الأوضاع المعيشية والاقتصادية ومحاربة الفساد بالتزامن مع ذكرى السابع من يوليو، المعروف بيوم "سبعة–سبعة"، الذي يعد تاريخيًا نقطة انطلاقة لمظاهرات واسعة طالبت بالإصلاح وتعددية الأحزاب في انتخابات عام 1992 ضد الرئيس دانيال أراب موي آنذاك.</p>
+                </div>
+                <div class="card-footer">
+                    <div class="source">
+                        <i class="fas fa-newspaper"></i>
+                    <a href="https://www.france24.com/en/africa/20250707-at-least-10-killed-dozens-injured-during-kenya-s-saba-saba-day-protests" target="_blank"><span>المصدر: فرانس 24</span></a>
+                        
+                    </div>
+                    <div class="tag">سياسة</div>
+                </div>
+            </div>
+            
+            <!-- Article 3: Egyptian DNA -->
+            <div class="news-card">
+                <div class="card-image">
+                    <img src="skeltone.jpg.webp" alt="اكتشاف أثري في مصر">
+                    <div class="image-overlay">
+                        <h3>اكتشاف أثري مذهل</h3>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <h2>حمض نووي لرجل مصري قديم يكشف عن صلات مفاجئة بين إفريقيا والعراق</h2>
+                </div>
+                <div class="card-content">
+                    <p>كشف تحليل لعظمة الأذن المأخوذة من جمجمة رجل قديم، عاش قبل أكثر من 4500 عام، وعُثر عليه في قرية النويرات المصرية، أن نحو 20% من أصوله تعود إلى بلاد الرافدين (العراق)، في أول دليل بيولوجي يكشف عن رابط بين الحضارتين، ما قد يساعد في شرح كيف تحولت مصر من مجتمعات زراعية إلى واحدة من أعظم الحضارات في التاريخ.</p>
+                    <p>وقالت الباحثة أديلين موريز جاكوب، التي قامت بتحليل العينة كجزء من بحثها، إن العلماء لطالما رجّحوا وجود تبادل فكري ومعرفي بين الحضارتين اللتين طورتا أول نظام للكتابة في التاريخ، ويُعد هذا الاكتشاف دليلاً بيولوجيًا يعزز صحة هذه النظرية.</p>
+                    <p>كما ذكر البروفيسور بونتوس سكوغلوند أن القدرة على قراءة الحمض النووي تمكّننا من تسليط الضوء على أحداث الماضي بشكل أفضل.</p>
+                </div>
+                <div class="card-footer">
+                    <div class="source">
+                        <i class="fas fa-newspaper"></i>
+                           <a href="https://www.bbc.com/news/articles/c1dnnyz0z6do" target="_blank"><span>المصدر: بي بي سي</span></a>
+                    </div>
+                    <div class="tag">علوم</div>
+                </div>
+            </div>
+            
+            <!-- Article 4: Egypt Interest Rates -->
+            <div class="news-card">
+                <div class="card-image">
+                    <img src="Bank.avif" alt="البنك المركزي المصري">
+                    <div class="image-overlay">
+                        <h3>السياسة النقدية في مصر</h3>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <h2>توقعات بتثبيت أسعار الفائدة الرئيسية في مصر مع ارتفاع معدلات التضخم</h2>
+                </div>
+                <div class="card-content">
+                    <p>يشير استطلاع أجرته رويترز إلى أن البنك المركزي المصري يتجه إلى تثبيت أسعار الفائدة الرئيسية على الإيداع والإقراض عند 24% و25% على التوالي، خلال اجتماعه يوم الخميس.</p>
+                    <p> ويأتي هذا التوقع في ظل فترة من تخفيضات الفائدة، بعد عودة معدلات التضخم إلى الارتفاع خلال الأشهر القليلة الماضية.</p>
+                    <p>وكان البنك المركزي قد خفّض أسعار الفائدة بمقدار 100 نقطة أساس في 22 مايو، و225 نقطة أساس في 17 أبريل.
+ ورغم تراجع معدل التضخم من 24% في يناير إلى 12.8% في فبراير، عاد ليرتفع تدريجياً، مسجلاً 16.8% في مايو الماضي.</p>
+                    <p>في هذا السياق، صرّح البنك المركزي المصري خلال اجتماع لجنة السياسة النقدية في أبريل بأن "انخفاض التضخم قد مهّد الطريق لمزيد من التخفيضات في أسعار الفائدة".</p>
+                    <p>وكان البنك يعمل على كبح التضخم الذي انخفض من ذروته البالغة 38% في سبتمبر 2023.</p>
+                    <p>ويرى مسؤولون ومصرفيون أن البنك المركزي شدّد المعروض النقدي منذ توقيعه اتفاقاً مع صندوق النقد الدولي العام الماضي، حيث تراجع نمو المعروض النقدي (M2) إلى 25.8% سنوياً بنهاية أبريل، مقارنة بـ33.9% في نهاية فبراير.</p>
+                </div>
+                <div class="card-footer">
+                    <div class="source">
+                        <i class="fas fa-newspaper"></i>
+                              <a href="https://www.reuters.com/world/africa/egypts-central-bank-expected-keep-interest-rates-steady-july-10-2025-07-07/" target="_blank"><span>المصدر: رويترز</span></a>
+                     
+                    </div>
+                    <div class="tag">اقتصاد</div>
+                </div>
+            </div>
+       
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>جميع الحقوق محفوظة © 2025</p>
+        <p>أخبار أفريقيا - تقديم أبرز الأحداث والتقارير من القارة</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</body>
+</html>
